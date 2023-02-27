@@ -1,23 +1,23 @@
 import { useState } from 'react';
 
 export const SearchBar = ({onSubmit}) => {
-    const [repoName, setRepoName] = useState('')
+    const [userName, setUserName] = useState('')
 
 
 
     const handleChange = e => {
-        setRepoName(e.currentTarget.value)
+        setUserName(e.currentTarget.value)
     };
 
 
     const handleSubmit = e => {
         e.preventDefault();
-        if (repoName.trim() === '') {
+        if (userName.trim() === '') {
             // alert('Please write correct city');
             return;
         }
-        onSubmit(repoName);
-        setRepoName('');
+        onSubmit(userName);
+        setUserName('');
     };
 
     return (
@@ -30,8 +30,8 @@ export const SearchBar = ({onSubmit}) => {
                         // className={css.Input}
                         type="text"
                         name='repoName'
-                        value={repoName}
-                        placeholder="repository"
+                        value={userName}
+                        placeholder="user"
                         autoComplete="off"
                         required
                         onChange={handleChange}
@@ -40,7 +40,7 @@ export const SearchBar = ({onSubmit}) => {
                         // className={css.SubmitBtn}
                         type="submit"
                     >
-                        Search Repo
+                        Search
                     </button>
                 </form>
         </>

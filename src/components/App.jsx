@@ -5,47 +5,58 @@ import { UserInfo } from 'pages/UserInfo/UserInfo';
 import { useEffect, useState } from 'react';
 
 import { Routes,Route,NavLink } from 'react-router-dom';
-import { repoFetch } from 'servises/Fetch';
+import { userFetch } from 'servises/Fetch';
 
 import { GlobalStyle } from './GlobalStyle';
+import { Loader } from './Loader/Loader';
 import { SearchBar } from './SearchBar/SearchBar';
 
 
 
 export const App = () => {
-  const [repoName, setRepoName] = useState('');
-  const [data, setData] = useState({});
+  const [userName, setUserName] = useState(null);
+  const [data, setData] = useState(null);
   const [, setIsLoading] = useState(false);
 
 
+
   useEffect(() => {
-    if (!repoName) {
+    if (userName === null) {
       return;
-    }
-    repoFetch(repoName).then(res => {
-      setData(res.data)
+    } else {
+      userFetch(userName).then(res => {
+      setData(res.data.items)
     }).catch(error => console.error(error.message))
       .finally(setIsLoading(false));
-  },[repoName])
+    }
+    
+  },[userName])
 
-  const handleSubmitForm = repoName => (
-    setRepoName(repoName)
-  ) 
-  console.log(data)
+
+  const handleSubmitForm = userName => {
+
+    setUserName(userName)
+  }
+
+
+  // console.log(data)
 
   return (
     <>
+      
       <header>
         <nav>
-          <NavLink to='/' end>Home</NavLink>
+          <NavLink  to='/' end>Home</NavLink>
           <NavLink to='/user'>User</NavLink>
           <NavLink to='/repo'>Repository</NavLink>
         </nav>
         <SearchBar onSubmit={handleSubmitForm} />
       </header>
 
+      <Loader />
+
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index path="/" element={<Home users={data} />} />
         <Route path='/user' element={<UserInfo />} />
         <Route path='/repo' element={<RepoInfo />} />
         <Route path="*" element={<NotFound />} />
