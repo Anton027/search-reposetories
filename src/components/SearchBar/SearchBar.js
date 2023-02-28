@@ -1,5 +1,7 @@
 import { useState } from 'react';
-
+import Button from '@mui/material/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Container from '@mui/material/Container';
 export const SearchBar = ({onSubmit}) => {
     const [userName, setUserName] = useState('')
 
@@ -21,28 +23,23 @@ export const SearchBar = ({onSubmit}) => {
     };
 
     return (
-        <>
+        <Container maxWidth="sm">
             <form
                 // className={css.SearchForm}
                 onSubmit={handleSubmit}
                 >
-                    <input
+                    <OutlinedInput
                         // className={css.Input}
                         type="text"
                         name='repoName'
                         value={userName}
-                        placeholder="user"
+                        placeholder="User"
                         autoComplete="off"
                         required
                         onChange={handleChange}
                     />
-                    <button
-                        // className={css.SubmitBtn}
-                        type="submit"
-                    >
-                        Search
-                    </button>
+                    <Button type='submit' variant="contained">Search</Button>
                 </form>
-        </>
+        </Container>
     );
 };
