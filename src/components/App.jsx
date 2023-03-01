@@ -1,23 +1,16 @@
 import { Home } from 'pages/Home/Home';
-import { NotFound } from 'pages/NotFound';
 import { UserInfo } from 'pages/UserInfo/UserInfo';
 import { useEffect, useState } from 'react';
-
 import { Routes,Route } from 'react-router-dom';
 import { userFetch } from 'servises/Fetch';
-
 import { GlobalStyle } from './GlobalStyle';
 import { Header } from './Header/Header';
-import { Loader } from './Loader/Loader';
-
 import { SearchBar } from './SearchBar/SearchBar';
-
-
 
 export const App = () => {
   const [userName, setUserName] = useState(null);
   const [data, setData] = useState(null);
-  const [isLoading, setiIsLoading] = useState(false);
+  const [, setiIsLoading] = useState(false);
 
 
 
@@ -36,23 +29,17 @@ export const App = () => {
 
 
   const handleSubmitForm = userName => {
-
     setUserName(userName)
   }
 
 
-  // console.log(data)
-
   return (
     <>
       <Header />
-      <SearchBar onSubmit={handleSubmitForm} />
-
-      {isLoading && <Loader />}
+      <SearchBar onSubmit={handleSubmitForm}/>
       <Routes>
-        <Route index path="/" element={<Home users={data} />} />
-        <Route path='/user' element={<UserInfo />} />
-        <Route path="*" element={<NotFound />} />
+          <Route index path='/' element={<Home users={data} />} />
+          <Route path='/user' element={<UserInfo /> } />
       </Routes>
       <GlobalStyle />
     </>

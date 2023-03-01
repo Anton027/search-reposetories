@@ -1,4 +1,3 @@
-// import { Loader } from "components/Loader/Loader"
 import { NavLink } from "react-router-dom"
 import * as React from 'react';
 import Container from '@mui/material/Container';
@@ -10,11 +9,11 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import css from './Home.module.css'
 
+
 export const Home = ({ users }) => {
     
     return (
-
-        <section>
+        <section className={css.Section}>
             <Container>
                 <h1 className={css.VisuallyHidden}>Home</h1>
                 
@@ -45,15 +44,12 @@ export const Home = ({ users }) => {
                                                 </React.Fragment>
                                             }
                                         />
-                                        
                                         </ListItem>
-                                        
-
                                     )
                                 }
                         </List>
                     </> :
-                    <h2 className={css.Title}>Please enter User name  of GitHub</h2>
+                    <h2 className={css.Title}>Please enter the Username of the GitHub</h2>
                     }
                 </Container>
             </section>

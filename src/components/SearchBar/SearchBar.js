@@ -2,10 +2,11 @@ import { useState } from 'react';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Container from '@mui/material/Container';
+import { ToastContainer, toast } from 'react-toastify';
+import css from './SearchBar.module.css'
+
 export const SearchBar = ({onSubmit}) => {
     const [userName, setUserName] = useState('')
-
-
 
     const handleChange = e => {
         setUserName(e.currentTarget.value)
@@ -15,8 +16,7 @@ export const SearchBar = ({onSubmit}) => {
     const handleSubmit = e => {
         e.preventDefault();
         if (userName.trim() === '') {
-            // alert('Please write correct city');
-            return;
+            toast("Please write correct city");
         }
         onSubmit(userName);
         setUserName('');
@@ -24,11 +24,12 @@ export const SearchBar = ({onSubmit}) => {
 
     return (
         <Container maxWidth="sm">
-            <form
+            <form className={css.Form}
                 // className={css.SearchForm}
                 onSubmit={handleSubmit}
                 >
-                    <OutlinedInput
+                <OutlinedInput
+                        
                         // className={css.Input}
                         type="text"
                         name='repoName'
@@ -39,7 +40,8 @@ export const SearchBar = ({onSubmit}) => {
                         onChange={handleChange}
                     />
                     <Button type='submit' variant="contained">Search</Button>
-                </form>
+            </form>
+            <ToastContainer />
         </Container>
     );
 };
