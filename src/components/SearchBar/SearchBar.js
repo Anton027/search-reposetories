@@ -25,12 +25,9 @@ export const SearchBar = ({onSubmit}) => {
     return (
         <Container maxWidth="sm">
             <form className={css.Form}
-                // className={css.SearchForm}
                 onSubmit={handleSubmit}
                 >
                 <OutlinedInput
-                        
-                        // className={css.Input}
                         type="text"
                         name='repoName'
                         value={userName}
