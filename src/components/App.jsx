@@ -29,7 +29,7 @@ export const App = () => {
       <Header />
       <SearchBar onSubmit={handleSubmitForm}/>
       <Routes>
-          <Route index path='/' element={<Home  />} />
+          <Route index path='*' element={<Home  />} />
           <Route path='/user' element={<UserInfo /> } />
       </Routes>
       <GlobalStyle />

@@ -7,6 +7,6 @@ export const Link = styled(NavLink)`
     border-radius: 6px;
     &.active{
         background-color: blue;
-        color: aliceblue;
+        color: #fff;
     }
 `
